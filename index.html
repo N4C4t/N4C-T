@@ -17,7 +17,7 @@
             -webkit-backdrop-filter: blur(10px);
             border-right: 1px solid rgba(255, 255, 255, 0.1);
             position: fixed;
-            left: -220px; /* مخفي افتراضيًا */
+            left: -220px; 
             top: 0;
             width: 220px;
             height: 100%;
@@ -27,7 +27,7 @@
         }
 
         .sidebar.open {
-            left: 0px; /* يظهر عند الفتح */
+            left: 0px; 
         }
 
         .sidebar a {
@@ -123,7 +123,7 @@
             1342px 1885px #FFF,
             1818px 574px #FFF,
             551px 123px #FFF,
-            /* ... (باقي الـ box-shadow كما في الكود الأصلي، تم تقليصها للاختصار) */
+            
             906px 1796px #FFF;
         animation: animStar 50s linear infinite;
     }
@@ -152,7 +152,7 @@
         animation: animStar 150s linear infinite, twinkle 2s ease-in-out infinite;
     }
 
-    /* حركة النجوم (من أعلى إلى أسفل) */
+    
     @keyframes animStar {
         from {
             transform: translateY(0px);
@@ -162,7 +162,7 @@
         }
     }
 
-    /* تأثير الوميض */
+    
     @keyframes twinkle {
         0% { opacity: 1; }
         50% { opacity: 0.3; }
@@ -277,17 +277,17 @@
     }
 
     .sidebar {
-  background: rgba(0, 0, 0, 0.2); /* شبه شفاف */
-  backdrop-filter: blur(10px); /* زجاجي */
-  -webkit-backdrop-filter: blur(10px); /* دعم سفاري */
-  border-right: 1px solid rgba(255, 255, 255, 0.1); /* خط فاصل ناعم */
+  background: rgba(0, 0, 0, 0.2); 
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  border-right: 1px solid rgba(255, 255, 255, 0.1); 
 
       position: fixed;
       left: 0;
       top: 0;
       width: 220px;
       height: 100%;
-      background: rgba(13, 17, 23, 0.2); /* شفافية */
+      background: rgba(13, 17, 23, 0.2); 
       backdrop-filter: blur(10px);
       padding-top: 60px;
       transition: transform 0.3s ease;
@@ -425,7 +425,7 @@
 			bottom: 20px;
 			left: 20px;
 			gap: 10px;
-			z-index: 11; /* تغيير القيمة إلى 11 لتكون فوق الـ Sidebar */
+			z-index: 11; 
 		}
         .icon {
             width: 50px;
