@@ -123,7 +123,7 @@
             1342px 1885px #FFF,
             1818px 574px #FFF,
             551px 123px #FFF,
-            
+           
             906px 1796px #FFF;
         animation: animStar 50s linear infinite;
     }
@@ -243,14 +243,13 @@
 <div id="stars3"></div>
 </body>
 </html>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Glass Sidebar</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   <style>
     * {
       margin: 0;
@@ -277,22 +276,23 @@
     }
 
     .sidebar {
-  background: rgba(0, 0, 0, 0.2); 
-  backdrop-filter: blur(10px); 
-  -webkit-backdrop-filter: blur(10px); 
-  border-right: 1px solid rgba(255, 255, 255, 0.1); 
-
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
       position: fixed;
       left: 0;
       top: 0;
       width: 220px;
       height: 100%;
-      background: rgba(13, 17, 23, 0.2); 
-      backdrop-filter: blur(10px);
       padding-top: 60px;
       transition: transform 0.3s ease;
       z-index: 10;
+      transform: translateX(-100%); 
     }
+
+    .sidebar.show {
+      transform: translateX(0); 
 
     .sidebar a {
       display: flex;
@@ -314,19 +314,95 @@
       margin-right: 10px;
     }
 
-    .sidebar.hidden {
-      transform: translateX(-100%);
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 11;
     }
-  
-@media (max-width: 768px) {
-  .content {
-    top: 90%;
-    padding: 0 10px;
-    white-space: normal;
-  }
-}
 
-</style>
+    @media (max-width: 768px) {
+      .content {
+        top: 90%;
+        padding: 0 10px;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- زر القائمة -->
+  <div class="menu-toggle" onclick="toggleSidebar()">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  
+  <div class="sidebar" id="sidebar">
+    <a href="#" onclick="location.reload()"><i class="fas fa-home"></i> Home</a>
+    <a href="achievements.html"><i class="fas fa-trophy"></i> Achievements</a>
+  </div>
+
+ 
+  <canvas id="starsCanvas" class="background-stars"></canvas>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+
+   
+    const canvas = document.getElementById('starsCanvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createStars(count) {
+      stars = [];
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 2,
+          speed: Math.random() * 0.5
+        });
+      }
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'white';
+      for (let star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+        star.y += star.speed;
+        if (star.y > canvas.height) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width;
+        }
+      }
+      requestAnimationFrame(animateStars);
+    }
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createStars(150);
+    });
+
+    resizeCanvas();
+    createStars(150);
+    animateStars();
+  </script>
+</body>
+</html>
 
   
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -425,7 +501,7 @@
 			bottom: 20px;
 			left: 20px;
 			gap: 10px;
-			z-index: 11; 
+			z-index: 11; /* تغيير القيمة إلى 11 لتكون فوق الـ Sidebar */
 		}
         .icon {
             width: 50px;
